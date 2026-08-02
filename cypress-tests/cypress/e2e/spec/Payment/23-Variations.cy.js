@@ -497,10 +497,27 @@ describe("Corner cases", () => {
   });
 
   context("[Payment] 3DS with greater capture", () => {
-    before("seed global state", () => {
-      cy.task("getGlobalState").then((state) => {
-        globalState = new State(state);
-      });
+    before("seed global state", function () {
+      let skip = false;
+
+      cy.task("getGlobalState")
+        .then((state) => {
+          globalState = new State(state);
+
+          if (
+            utils.shouldExcludeConnector(
+              globalState.get("connectorId"),
+              utils.CONNECTOR_LISTS.EXCLUDE.THREE_DS
+            )
+          ) {
+            skip = true;
+          }
+        })
+        .then(() => {
+          if (skip) {
+            this.skip();
+          }
+        });
     });
 
     afterEach("flush global state", () => {
