@@ -545,6 +545,11 @@ export const CONNECTOR_LISTS = {
       "mifinity",
     ],
     SAVE_CARD: ["helcim", "givepayments"],
+    // Connectors whose 3DS support is external-3DS only (client/SDK performs
+    // the challenge and passes pre-authenticated data in) rather than
+    // connector-hosted redirect 3DS, so the redirect-based 3DS specs
+    // (05-ThreeDSAutoCapture, 16-ThreeDSManualCapture) don't apply.
+    THREE_DS: ["fiservcommercehub"],
     // Add more exclusion lists
     // Note: mitUsingPMId/mitForMandatesCallTest/listMandateCallTest use
     // per-config TRIGGER_SKIP or globalState checks instead of a static

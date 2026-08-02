@@ -9,7 +9,7 @@ videos/
 creds.json
 cypress.env.json
 run_all.sh
-run-givepayments-ucs.sh
+run-*-ucs.sh
 
 # Cypress Dashboard build
 **/dist
